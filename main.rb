@@ -9,4 +9,14 @@ def get_name_and_phone(contacts)
   contacts.map {|contact| {contact[:name] => contact[:phone]}}
 end
 
+def select_contacts(contacts)
+  contacts.select {|contact| contact[:phone] =~ /\+1/ }
+end
+
 print get_name_and_phone(read_contacts)
+puts
+puts
+
+print select_contacts(read_contacts)
+puts
+puts
