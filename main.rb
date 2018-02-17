@@ -17,9 +17,16 @@ def select_contacts_email(contacts)
   contacts.select {|contact| contact[:email] =~ /.org/}
 end
 
-def reduce_contacts(contacts)
+def reduce_contacts_phone(contacts)
   contacts.reduce(0) do |sum, contact|
-    sum += 1 if contact[:phone] =~ /\+1/ || contact[:email] =~ /.org/
+    sum += 1 if contact[:phone] =~ /\+1/
+    sum
+  end
+end
+
+def reduce_contacts_email(contacts)
+  contacts.reduce(0) do |sum, contact|
+    sum += 1 if contact[:email] =~ /.org/
     sum
   end
 end
@@ -36,5 +43,10 @@ print select_contacts_email(read_contacts)
 puts
 puts
 
-print reduce_contacts(read_contacts)
+print reduce_contacts_phone(read_contacts)
+puts
+puts
+
+print reduce_contacts_email(read_contacts)
+puts
 puts
